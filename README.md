@@ -1,2 +1,3 @@
 # UTN-TUPaDProgramacion1
-Actualizo Práctica N°1
+- Práctico N°1
+- Práctico N°2
