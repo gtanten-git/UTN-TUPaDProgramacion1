@@ -272,21 +272,27 @@ except:
 # del año es y qué día es. El programa deberá utilizar esa información para imprimir por pantalla
 # si el usuario se encuentra en otoño, invierno, primavera o verano.
 
+# Solicitar hemisferio al usuario
 hemisferio = input("Ingrese Hemisferio N: Norte - S: Sur ")
+# Convertir a mayúsculas para adaptar s o n
 hemisferio = hemisferio.upper()
 
-
+# Comprobar hemisferio
 if hemisferio == "N" or hemisferio == "S":
     try:
+        # Solicitar mes y dia, convertir a entero
         mes = input("Ingrese mes del año: ")
         mes = int(mes)
         dia = input("Ingrese día del mes: ")
         dia = int(dia)
        
+        # Comprobar si el mes está entre 1 y 12 y el día entre 1 y 31
         if 1 <= mes <= 12:
             if 1 <= dia <= 31:
+                # Comprobar los meses de cambio de estación 12, 3, 6, 9 y el día de cambio
                 if mes == 12:
                     if dia >= 21:
+                        # Mensaje según hemisferio
                         print("Invierno") if hemisferio == "N" else print("Verano")
                     else:
                         print("Otoño") if hemisferio == "N" else print("Primavera")
@@ -305,6 +311,7 @@ if hemisferio == "N" or hemisferio == "S":
                         print("Otoño") if hemisferio == "N" else print("Primavera")
                     else:
                         print("Verano") if hemisferio == "N" else print("Invierno")
+                # Comprobar los meses intermedios de cada estación
                 elif mes == 1 or mes == 2:
                     print("Invierno") if hemisferio == "N" else print("Verano")
                 elif mes == 4 or mes == 5:
