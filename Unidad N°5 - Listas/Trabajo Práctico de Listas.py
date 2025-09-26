@@ -323,6 +323,36 @@ cont_O = 0
 for n in titulo:
     marco += "*"
 # Se limpia pantalla y se imprime marco con título
+import os
+import time
+# Se define matriz que contiene todas las combinaciones posibles de tateti
+combinaciones = [[[0, 0], [1, 1], [2, 2]], [[0, 2], [1, 1], [2, 0]], [[0, 0], [0, 1], [0, 2]],
+                 [[1, 0], [1, 1], [1, 2]], [[2, 0], [2, 1], [2, 2]], [[0, 0], [1, 0], [2, 0]],
+                 [[0, 1], [1, 1], [2, 1]], [[0, 2], [1, 2], [2, 2]]]
+# Se define lista de contadores para cada jugador
+contadores = [[0 for i in range(2)] for i in range(9)]
+# Se definen variables para crear matriz visual vacía y marco
+marco =""
+caracter = " - "
+# Se genera matriz visual con caracter -
+vacio = [[caracter for i in range(3)] for i in range(3)]
+# Se definen caracter para cada jugador
+jugador_1 = " X "
+jugador_2 = " O "
+# Se define estado del aviso, turno y título
+aviso = False
+turno = ""
+titulo = "Ta-Te-Ti - Por consola"
+# Se definen listas de jugadas realizadas para cada jugador
+pos_jug_1 = []
+pos_jug_2 = []
+# Se define variables de estado de repetido y contador de jugador O
+repetido = False
+cont_X = 0
+# Se define el marco visual
+for n in titulo:
+    marco += "*"
+# Se limpia pantalla y se imprime marco con título
 os.system("cls")
 print(marco)
 print(titulo)
@@ -354,7 +384,7 @@ while True:
     else:
         turno = nombre_jugador_1
     #En caso de que el segundo contador llegue a 4 jugadas, define empate
-    if cont_O == 4:
+    if cont_X == 5:
         print("Empate")
         time.sleep(2)
         break
@@ -376,7 +406,7 @@ while True:
         fila = int(fila) - 1
         columna = int(columna) - 1
         # Si fila o columna no se encuentran dentro de la matriz
-        if not 0 <= fila <= 2 and not 0 <= columna <= 2:
+        if not (-1 < fila <= 2) or not (-1 < columna <= 2):
             print("Debe ingresar un valor entre 1 y 3 para filas y columnas")
             # Se define turno
             turno = nombre_jugador_2 if turno == nombre_jugador_1 else nombre_jugador_1
@@ -400,9 +430,10 @@ while True:
         # jugador 2
         if turno == nombre_jugador_1:
             vacio[fila][columna] = jugador_1
+            cont_X += 1
         else: 
             vacio[fila][columna] = jugador_2
-            cont_O += 1
+            
         # Se cuentan jugadas dentro de las combinaciones, en caso de que cada contador por combinación
         # cumple la condición ( 3 en línea) aviso se pone en True para mostrar mensaje al ganador.
         for i in range(len(combinaciones)):
@@ -422,7 +453,6 @@ while True:
         turno = nombre_jugador_2 if turno == nombre_jugador_1 else nombre_jugador_1
         time.sleep(2)
         continue
-
 
 # Ejercicio 10
 # 10) Una tienda registra las ventas de 4 productos durante 7 días, en una matriz de 4x7.
